@@ -6,8 +6,8 @@
    @request.messages(key)
 }
 
-@main("Welcome to Play") {
-  @form(routes.PersonController.addPerson()) {
+@main("LabAssistant") {
+  @form(routes.UserController.addUser()) {
 		@inputText(person("name"))
 		@inputText(person("age"))
 		@CSRF.formField

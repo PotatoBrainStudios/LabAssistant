@@ -9,7 +9,6 @@ import play.api.test._
  */
 @RunWith(classOf[JUnitRunner])
 class BrowserSpec extends Specification {
-
   "Application" should {
 
     "work from within a browser" in new WithBrowser {

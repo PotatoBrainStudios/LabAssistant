@@ -12,8 +12,8 @@ import play.api.mvc._
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class PersonController @Inject()(repo: PersonRepository,
-                                  cc: MessagesControllerComponents
+class UserController @Inject()(repo: UserRepository,
+                               cc: MessagesControllerComponents
                                 )(implicit ec: ExecutionContext)
   extends MessagesAbstractController(cc) {
 
@@ -39,7 +39,7 @@ class PersonController @Inject()(repo: PersonRepository,
    *
    * This is asynchronous, since we're invoking the asynchronous methods on PersonRepository.
    */
-  def addPerson = Action.async { implicit request =>
+  def addUser = Action.async { implicit request =>
     // Bind the form first, then fold the result, passing a function to handle errors, and a function to handle succes.
     personForm.bindFromRequest.fold(
       // The error function. We return the index page with the error form, which will render the errors.
@@ -52,7 +52,7 @@ class PersonController @Inject()(repo: PersonRepository,
       person => {
         repo.create(person.name, person.age).map { _ =>
           // If successful, we simply redirect to the index page.
-          Redirect(routes.PersonController.index).flashing("success" -> "user.created")
+          Redirect(routes.UserController.index).flashing("success" -> "user.created")
         }
       }
     )
@@ -61,7 +61,7 @@ class PersonController @Inject()(repo: PersonRepository,
   /**
    * A REST endpoint that gets all the people as JSON.
    */
-  def getPersons = Action.async { implicit request =>
+  def getUsers = Action.async { implicit request =>
     repo.list().map { people =>
       Ok(Json.toJson(people))
     }
