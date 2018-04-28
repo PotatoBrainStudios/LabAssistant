@@ -3,8 +3,8 @@ plugins {
     id 'idea'
 }
 
-def playVersion = '2.6.12'
-def scalaVersion = "2.12"
+def playVersion = "2.6.13"
+def scalaVersion = System.getProperty("scala.binary.version", /* default = */ "2.12")
 
 model {
     components {
@@ -26,7 +26,12 @@ dependencies {
     play "com.typesafe.play:play-logback_$scalaVersion:$playVersion"
     play "com.typesafe.play:filters-helpers_$scalaVersion:$playVersion"
 
-    playTest "org.scalatestplus.play:scalatestplus-play_$scalaVersion:3.1.2"
+    play "com.typesafe.play:play-slick_$scalaVersion:3.0.3"
+    play "com.typesafe.play:play-slick-evolutions_$scalaVersion:3.0.3"
+
+    play "com.h2database:h2:1.4.196"
+
+    playTest "com.typesafe.play:play-specs2_$scalaVersion:$playVersion"
 }
 
 repositories {

@@ -1,1 +1,4 @@
-# https://www.playframework.com/documentation/latest/ScalaI18N
+name = Name
+age = Age
+
+user.created = You have successfully created a user!
